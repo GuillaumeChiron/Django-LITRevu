@@ -16,7 +16,7 @@
 
             <form method="post" action="{% url 'logout-page' %}">
             {% csrf_token %}
-            <button type="submit">Se déconnecter</button>
+            <button class="cancel-btn" type="submit">Se déconnecter</button>
             </form>
         </p>
 

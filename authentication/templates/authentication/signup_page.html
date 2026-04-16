@@ -2,18 +2,19 @@
 
 {% block content %}
 
-<h2>Inscription</h2>
+<div class="login-box">
+    <h2>Inscription</h2>
 
-{% if form.errors %}
-    {{ form.errors }}
-{% endif %}
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
 
-<form method="post">
+    <form method="post">
         {{ form.as_p }}
         {% csrf_token %}
-    <button type="submit" >S'inscrire</button>
-</form>
-
-<a href="{% url 'login-page' %}">Retour</a>
+        <button type="submit">S'inscrire</button>
+    </form>
+    <p><a class="cancel-btn" href="{% url 'login-page' %}">Annuler</a></p>
+</div>
 
 {% endblock content %}

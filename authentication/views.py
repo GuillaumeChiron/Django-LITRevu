@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 
 from authentication import forms
-from django.contrib.auth.forms import UserCreationForm
+from authentication.forms import SignupForm
 
 
 def signup_page(request):
-    form = UserCreationForm()
+    form = SignupForm()
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = SignupForm(request.POST)
         form.save()
         return redirect("login-page")
     return render(request, "authentication/signup_page.html", {"form": form})

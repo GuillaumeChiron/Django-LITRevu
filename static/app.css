@@ -2,23 +2,45 @@ body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
 }
+
+button {
+    font-size: 20px;
+    padding: 10px;
+    background: #81A181;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #B54E4E;
+}
+
 .login-box {
     width: 350px;
     margin: 80px auto;
     padding: 24px;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
 
-input {
+.login-box h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.login-box input {
     width: 100%;
     padding: 10px;
     margin-top: 8px;
     margin-bottom: 16px;
+    box-sizing: border-box;
 }
 
-button {
+.login-box button {
     font-size: 20px;
     width: 100%;
     padding: 10px;
@@ -26,6 +48,16 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-box ul.errorlist {
+    margin: 0 0 16px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #fce8e8;
+    color: #8a1f1f;
+    list-style-position: inside;
 }
 
 .login-box p {
@@ -43,4 +75,8 @@ button {
     text-decoration: none;
     border-radius: 8px;
     box-sizing: border-box;
+}
+
+.login-box p a.cancel-btn {
+    background: #B54E4E;
 }
