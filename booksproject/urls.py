@@ -23,7 +23,9 @@ import authentication.views
 import app.views
 
 urlpatterns = [
+    # chemin admin
     path("admin/", admin.site.urls),
+    # chemins: connexion, deconnexion et d'inscription
     path(
         "",
         LoginView.as_view(template_name="authentication/login_page.html"),
@@ -32,4 +34,6 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout-page"),
     path("signup/", authentication.views.signup_page, name="signup-page"),
     path("home/", app.views.home_page, name="home-page"),
+    # chemins: Publier un article
+    path("create-ticket/", app.views.create_ticket, name="create-ticket"),
 ]
