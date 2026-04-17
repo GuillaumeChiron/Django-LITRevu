@@ -35,21 +35,6 @@ button {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.ticket-box {
-    width: 350px;
-    margin: 80px auto;
-    padding: 24px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.ticket-box img {
-    width: 300px;
-    height: 350px;
-    object-fit: cover;
-}
-
 .login-box h2 {
     margin-top: 0;
     margin-bottom: 16px;
@@ -103,4 +88,25 @@ button {
 
 .login-box p a.cancel-btn {
     background: #B54E4E;
+}
+
+.ticket-box {
+    width: 350px;
+    margin: 80px auto;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.ticket-box img {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+}
+
+.ticket-box p{
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-align: center;
 }
