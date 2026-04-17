@@ -35,6 +35,15 @@ button {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
+.ticket-box {
+    width: 350px;
+    margin: 80px auto;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
 .login-box h2 {
     margin-top: 0;
     margin-bottom: 16px;

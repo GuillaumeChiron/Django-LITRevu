@@ -5,4 +5,12 @@
 <h2>bienvenue sur l'application BooksAPP</h2>
 <p><a href="{% url 'create-ticket' %}">Publier un article</a></p>
 
+<div class="ticket-box">
+    {% for ticket in tickets %}
+    <p>{{ticket.title}}</p>
+    <p>{{ticket.description}}</p>
+    <p>{{ticket.image}}</p>
+    {% endfor %}
+</div>
+
 {% endblock content %}

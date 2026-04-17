@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
 
 import authentication.views
@@ -37,3 +39,6 @@ urlpatterns = [
     # chemins: Publier un article
     path("create-ticket/", app.views.create_ticket, name="create-ticket"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

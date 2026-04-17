@@ -129,3 +129,7 @@ LOGIN_URL = "login-page"
 LOGIN_REDIRECT_URL = "home-page"
 
 LOGOUT_REDIRECT_URL = "login-page"
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR.joinpath("media/")
