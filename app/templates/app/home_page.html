@@ -9,7 +9,7 @@
     {% for ticket in tickets %}
     <p>{{ticket.title}}</p>
     <p>{{ticket.description}}</p>
-    <p>{{ticket.image}}</p>
+    <p><img src="{{ticket.image.url}}" alt="image"></p>
     {% endfor %}
 </div>
 
