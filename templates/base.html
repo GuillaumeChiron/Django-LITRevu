@@ -1,27 +1,36 @@
 {% load static %}
 
 <html>
-    <head>
-        <title>LITRevu</title>
-        <link rel="stylesheet" href="{% static 'app.css' %}">
-    </head>
-    <body>
-        
-        {% block content %}{% endblock content %}
+
+<head>
+    <title>LITRevu</title>
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+</head>
+
+<body>
+    <nav>
 
         {% if user.is_authenticated %}
-
-        <p>
-            {{ request.user }} : connecté
-
+        <div class="header">
+            <p>
+                {{ request.user }}
+            </p>
+            <p>
             <form method="post" action="{% url 'logout-page' %}">
-            {% csrf_token %}
-            <button class="cancel-btn" type="submit">Se déconnecter</button>
+                {% csrf_token %}
+                <button class="cancel-btn" type="submit">Se déconnecter</button>
             </form>
-        </p>
+            </p>
+        </div>
+        {% endif %}
 
-    {% endif %}
 
-    </body>
+    </nav>
+
+    {% block content %}{% endblock content %}
+
+
+
+</body>
 
 </html>
