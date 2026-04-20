@@ -20,6 +20,10 @@ nav .header {
     align-items: center;
 }
 
+nav .header .bold {
+    font-weight: bold;
+}
+
 button {
     font-size: 20px;
     padding: 15px;
