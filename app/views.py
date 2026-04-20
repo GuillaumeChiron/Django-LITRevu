@@ -63,3 +63,15 @@ def create_ticket_review(request):
         "app/create_ticket_review.html",
         {"ticket_form": ticket_form, "review_form": review_form},
     )
+
+
+@login_required
+def edit_ticket(request, id):
+    ticket = get_object_or_404(Ticket, id=id)
+    ticket_form = TicketForm(instance=ticket)
+    if request.method == "POST":
+        ticket_form = TicketForm(request.POST, request.FILES, instance=ticket)
+        if ticket_form.is_valid():
+            ticket_form.save()
+            return redirect("home-page")
+    return render(request, "app/edit_ticket.html", {"ticket_form": ticket_form})

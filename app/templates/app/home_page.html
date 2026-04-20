@@ -11,8 +11,10 @@
     <p>Ticket : {{ticket.user}}</p>
     <p>{{ticket.title}}</p>
     <p>{{ticket.description}}</p>
-    <p><img src="{{ticket.image.url}}" alt="image"></p>
-    <p></p>
+    {% if ticket.image %}
+        <p><img src="{{ticket.image.url}}" alt="image"></p>
+    {% endif %}
+    <p><a href="{% url 'edit-ticket' ticket.id %}">Modifier</a></p>
     <p><a href="{% url 'create-review' ticket.id %}">Créer une critique</a></p>
 </div>
 {% endfor %}

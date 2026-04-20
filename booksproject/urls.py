@@ -41,6 +41,7 @@ urlpatterns = [
     path("home/", app.views.home_page, name="home-page"),
     # chemins: Ticket, Review
     path("create-ticket/", app.views.create_ticket, name="create-ticket"),
+    path("edit/<int:id>/", app.views.edit_ticket, name="edit-ticket"),
     path(
         "create-review/<int:id>/",
         app.views.create_review,
