@@ -7,8 +7,11 @@ from app.forms import TicketForm, ReviewResponseForm
 
 @login_required
 def home_page(request):
-    tickets = Ticket.objects.all()
-    return render(request, "app/home_page.html", {"tickets": tickets})
+    tickets = Ticket.objects.all().order_by("-time_created")
+    reviews = Review.objects.all().order_by("-time_created")
+    return render(
+        request, "app/home_page.html", {"tickets": tickets, "reviews": reviews}
+    )
 
 
 @login_required

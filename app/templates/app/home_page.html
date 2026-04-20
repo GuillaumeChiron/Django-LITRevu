@@ -3,15 +3,27 @@
 {% block content %}
 
 <h2>bienvenue sur l'application BooksAPP</h2>
-<p><a href="{% url 'create-ticket' %}">Publier un article</a></p>
+<p><a href="{% url 'create-ticket' %}">Demander une critique</a></p>
 
+{% for ticket in tickets %}
 <div class="ticket-box">
-    {% for ticket in tickets %}
     <p>{{ticket.title}}</p>
     <p>{{ticket.description}}</p>
     <p><img src="{{ticket.image.url}}" alt="image"></p>
-    <p><a href="{% url 'create-review-response' ticket.id %}">Créer la Review</a></p>
-    {% endfor %}
+    <p></p>
+    <p><a href="{% url 'create-review-response' ticket.id %}">Créer une critique</a></p>
 </div>
+{% endfor %}
+
+{% for review in reviews %}
+<div class="ticket-box">
+    <p>{{review.user}}</p>
+    <p>{{review.rating}}</p>
+    <p>{{review.headline}}</p>
+    <p>{{review.body}}</p>
+    <p>{{review.ticket}}</p>
+    <p>{{review.time_created}}</p>
+</div>
+{% endfor %}
 
 {% endblock content %}

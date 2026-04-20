@@ -12,9 +12,10 @@
 
         {% if user.is_authenticated %}
         <div class="header">
-            <p>
-                {{ request.user }}
-            </p>
+            <p>{{ request.user }}</p>
+            <p><a href="">Flux</a></p>
+            <p><a href="">Posts</a></p>
+            <p><a href="">Abonnements</a></p>
             <p>
             <form method="post" action="{% url 'logout-page' %}">
                 {% csrf_token %}
