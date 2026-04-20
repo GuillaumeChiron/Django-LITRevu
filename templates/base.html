@@ -12,7 +12,7 @@
 
         {% if user.is_authenticated %}
         <div class="header">
-            <p><a href="">Flux</a></p>
+            <p><a href="{% url 'home-page' %}">Flux</a></p>
             <p><a href="">Posts</a></p>
             <p><a href="">Abonnements</a></p>
             <p class="bold">{{request.user|upper}}</p>
@@ -29,8 +29,6 @@
     </nav>
 
     {% block content %}{% endblock content %}
-
-
 
 </body>
 

@@ -74,4 +74,15 @@ def edit_ticket(request, id):
         if ticket_form.is_valid():
             ticket_form.save()
             return redirect("home-page")
-    return render(request, "app/edit_ticket.html", {"ticket_form": ticket_form})
+    return render(
+        request, "app/edit_ticket.html", {"ticket_form": ticket_form, "ticket": ticket}
+    )
+
+
+@login_required
+def delete_ticket(request, id):
+    ticket = get_object_or_404(Ticket, id=id)
+    if request.method == "POST":
+        ticket.delete()
+        return redirect("home-page")
+    return render(request, "app/delete_ticket.html", {"ticket": ticket})
