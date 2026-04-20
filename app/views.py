@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from app.models import Ticket, Review
-from app.forms import TicketForm
+from app.forms import TicketForm, ReviewResponseForm
 
 
 @login_required
@@ -22,3 +22,18 @@ def create_ticket(request):
             ticket.save()
             return redirect("home-page")
     return render(request, "app/create_ticket.html", {"form": form})
+
+
+@login_required
+def create_review_response(request, id):
+    ticket = get_object_or_404(Ticket, id=id)
+    form = ReviewResponseForm()
+    if request.method == "POST":
+        form = ReviewResponseForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect("home-page")
+    return render(request, "app/create_review.html", {"form": form})

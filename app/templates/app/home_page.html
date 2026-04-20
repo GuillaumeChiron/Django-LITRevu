@@ -10,6 +10,7 @@
     <p>{{ticket.title}}</p>
     <p>{{ticket.description}}</p>
     <p><img src="{{ticket.image.url}}" alt="image"></p>
+    <p><a href="{% url 'create-review-response' ticket.id %}">Créer la Review</a></p>
     {% endfor %}
 </div>
 

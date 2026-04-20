@@ -39,8 +39,13 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout-page"),
     path("signup/", authentication.views.signup_page, name="signup-page"),
     path("home/", app.views.home_page, name="home-page"),
-    # chemins: Publier un article
+    # chemins: Ticket, Review
     path("create-ticket/", app.views.create_ticket, name="create-ticket"),
+    path(
+        "create-review/<int:id>/",
+        app.views.create_review_response,
+        name="create-review-response",
+    ),
 ]
 
 if settings.DEBUG:
