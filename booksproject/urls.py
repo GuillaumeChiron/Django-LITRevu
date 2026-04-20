@@ -43,8 +43,13 @@ urlpatterns = [
     path("create-ticket/", app.views.create_ticket, name="create-ticket"),
     path(
         "create-review/<int:id>/",
-        app.views.create_review_response,
-        name="create-review-response",
+        app.views.create_review,
+        name="create-review",
+    ),
+    path(
+        "create-ticket-review/",
+        app.views.create_ticket_review,
+        name="create-ticket-review",
     ),
 ]
 

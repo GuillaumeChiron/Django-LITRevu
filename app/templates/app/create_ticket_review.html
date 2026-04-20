@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ ticket_form.as_p }}
+    <hr>
+    {{ review_form.as_p }}
+    <input type="submit" name="ticket" value="publier">
+</form>
+
+
+<p><a href="{% url 'home-page' %}">Retour</a></p>
+
+{% endblock content %}
