@@ -27,6 +27,7 @@
     <p>{{review.body}}</p>
     <p>{{review.ticket}}</p>
     <p>{{review.time_created}}</p>
+    <p><a href="{% url 'edit-review' review.id %}">Modifier</a></p>
 </div>
 {% endfor %}
 

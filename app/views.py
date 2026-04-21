@@ -86,3 +86,26 @@ def delete_ticket(request, id):
         ticket.delete()
         return redirect("home-page")
     return render(request, "app/delete_ticket.html", {"ticket": ticket})
+
+
+@login_required
+def edit_review(request, id):
+    review = get_object_or_404(Review, id=id)
+    review_form = ReviewForm(instance=review)
+    if request.method == "POST":
+        review_form = ReviewForm(request.POST, instance=review)
+        if review_form.is_valid():
+            review_form.save()
+            return redirect("home-page")
+    return render(
+        request, "app/edit_review.html", {"review_form": review_form, "review": review}
+    )
+
+
+@login_required
+def delete_review(request, id):
+    review = get_object_or_404(Review, id=id)
+    if request.method == "POST":
+        review.delete()
+        return redirect("home-page")
+    return render(request, "app/delete_review.html", {"review": review})

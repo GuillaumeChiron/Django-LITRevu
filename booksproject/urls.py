@@ -40,14 +40,18 @@ urlpatterns = [
     path("signup/", authentication.views.signup_page, name="signup-page"),
     path("home/", app.views.home_page, name="home-page"),
     # chemins: Ticket, Review
+    # Ticket
     path("create-ticket/", app.views.create_ticket, name="create-ticket"),
     path("edit-ticket/<int:id>/", app.views.edit_ticket, name="edit-ticket"),
     path("delete-ticket/<int:id>/", app.views.delete_ticket, name="delete-ticket"),
+    # Review
     path(
         "create-review/<int:id>/",
         app.views.create_review,
         name="create-review",
     ),
+    path("edit-review/<int:id>/", app.views.edit_review, name="edit-review"),
+    path("delete-review/<int:id>/", app.views.delete_review, name="delete-review"),
     path(
         "create-ticket-review/",
         app.views.create_ticket_review,
