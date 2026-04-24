@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>rechercher un utlisateur</h2>
+<h2>Rechercher un utlisateur</h2>
 
 <form method="get" action="{% url 'dashboard-follow' %}">
     <input type="text" name="q" placeholder="Rechercher un utilisateur..." value="{{ query|default:'' }}">
@@ -10,11 +10,13 @@
 </form>
 
 {% for user in users %}
-{{user.username}}
-<form method="post" action="{% url 'follow-user' user.id %}">
-    {% csrf_token %}
-    <button type="submit">Suivre</button>
-</form>
+<div>
+    {{user.username}}
+    <form method="post" action="{% url 'follow-user' user.id %}">
+        {% csrf_token %}
+        <button type="submit">Suivre</button>
+    </form>
+</div>
 {% endfor %}
 
 <h3>Abonnements : </h3>
