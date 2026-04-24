@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
-from app.models import Ticket, Review
+from app.models import Ticket, Review, UserFollow
 from app.forms import TicketForm, ReviewForm
+
+User = get_user_model()
 
 
 @login_required
@@ -109,3 +112,53 @@ def delete_review(request, id):
         review.delete()
         return redirect("home-page")
     return render(request, "app/delete_review.html", {"review": review})
+
+
+@login_required
+def dashboard_follow(request):
+    query = request.GET.get("q")
+
+    users = []
+
+    if query:
+        users = User.objects.filter(username__icontains=query).exclude(
+            id=request.user.id
+        )
+
+    following = UserFollow.objects.filter(user=request.user).select_related(
+        "followed_user"
+    )
+
+    followers = UserFollow.objects.filter(followed_user=request.user).select_related(
+        "user"
+    )
+
+    return render(
+        request,
+        "app/dashboard_follow.html",
+        {
+            "query": query,
+            "users": users,
+            "following": following,
+            "followers": followers,
+        },
+    )
+
+
+@login_required
+def follow_user(request, id):
+    user_to_follow = get_object_or_404(User, id=id)
+
+    if request.user != user_to_follow:
+        UserFollow.objects.create(user=request.user, followed_user=user_to_follow)
+        return redirect("dashboard-follow")
+
+
+@login_required
+def unfollow_user(request, id):
+    user_to_unfollow = get_object_or_404(User, idi=id)
+
+    UserFollow.objects.filter(
+        user=request.user, followed_user=user_to_unfollow
+    ).delete()
+    return redirect("dashboard-follow")

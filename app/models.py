@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 from django.conf import settings
 
 
@@ -42,3 +43,10 @@ class UserFollow(models.Model):
             "user",
             "followed_user",
         )
+
+    def not_self_follow(self):
+        if self.user == self.followed_user:
+            raise ValidationError("Il est impossible de se suivre soit même")
+
+    def __str__(self):
+        return f"{self.user} suit {self.followed_user}"

@@ -14,7 +14,7 @@
         <div class="header">
             <p><a href="{% url 'home-page' %}">Flux</a></p>
             <p><a href="">Posts</a></p>
-            <p><a href="">Abonnements</a></p>
+            <p><a href="{% url 'dashboard-follow' %}">Abonnements</a></p>
             <p class="bold">{{request.user|upper}}</p>
             <p>
             <form method="post" action="{% url 'logout-page' %}">

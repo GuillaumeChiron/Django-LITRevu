@@ -57,6 +57,9 @@ urlpatterns = [
         app.views.create_ticket_review,
         name="create-ticket-review",
     ),
+    # chemins : Dashboard, follow, unfollow
+    path("dashboard-follow/", app.views.dashboard_follow, name="dashboard-follow"),
+    path("follow-user/<int:id>/", app.views.follow_user, name="follow-user"),
 ]
 
 if settings.DEBUG:
