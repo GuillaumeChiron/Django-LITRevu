@@ -44,9 +44,5 @@ class UserFollow(models.Model):
             "followed_user",
         )
 
-    def not_self_follow(self):
-        if self.user == self.followed_user:
-            raise ValidationError("Il est impossible de se suivre soit même")
-
     def __str__(self):
         return f"{self.user} suit {self.followed_user}"

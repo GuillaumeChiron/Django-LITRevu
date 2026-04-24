@@ -116,7 +116,7 @@ def delete_review(request, id):
 
 @login_required
 def dashboard_follow(request):
-    query = request.GET.get("q")
+    query = request.GET.get("recherche")
 
     users = []
 
@@ -156,9 +156,10 @@ def follow_user(request, id):
 
 @login_required
 def unfollow_user(request, id):
-    user_to_unfollow = get_object_or_404(User, idi=id)
+    if request.method == "POST":
+        user_to_unfollow = get_object_or_404(User, id=id)
 
-    UserFollow.objects.filter(
-        user=request.user, followed_user=user_to_unfollow
-    ).delete()
-    return redirect("dashboard-follow")
+        UserFollow.objects.filter(
+            user=request.user, followed_user=user_to_unfollow
+        ).delete()
+        return redirect("dashboard-follow")

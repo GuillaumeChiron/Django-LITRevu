@@ -60,6 +60,7 @@ urlpatterns = [
     # chemins : Dashboard, follow, unfollow
     path("dashboard-follow/", app.views.dashboard_follow, name="dashboard-follow"),
     path("follow-user/<int:id>/", app.views.follow_user, name="follow-user"),
+    path("unfollow-user/<int:id>/", app.views.unfollow_user, name="unfollow-user"),
 ]
 
 if settings.DEBUG:

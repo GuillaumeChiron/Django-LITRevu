@@ -5,7 +5,7 @@
 <h2>Rechercher un utlisateur</h2>
 
 <form method="get" action="{% url 'dashboard-follow' %}">
-    <input type="text" name="q" placeholder="Rechercher un utilisateur..." value="{{ query|default:'' }}">
+    <input type="text" name="recherche" placeholder="Rechercher un utilisateur..." value="{{ query|default:'' }}">
     <button type="submit">Rechercher</button>
 </form>
 
@@ -21,14 +21,22 @@
 
 <h3>Abonnements : </h3>
 {% for follow in following %}
-<p>{{follow.followed_user.username}}</p>
+<div>
+    <p>{{follow.followed_user.username}}</p>
+    <form method="post" action="{% url 'unfollow-user' follow.followed_user.id %}">
+        {% csrf_token %}
+        <button type="submit">Se désabonner</button>
+</form>
+</div>
+
 {% endfor %}
 
 <h3>Abonnés : </h3>
 {% for follow in followers %}
-<p>{{follow.user.username}}</p>
+<div>
+    {{follow.user.username}}
+</div>
 {% endfor %}
-
 
 
 {% endblock content %}
