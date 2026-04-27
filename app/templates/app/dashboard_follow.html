@@ -1,42 +1,73 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extras_css %}
+<link rel="stylesheet" href="{% static 'pages/dashboard_follow.css' %}">
+{% endblock extras_css %}
 
 {% block content %}
+<main class="follow-page">
+    <section class="follow-card">
+        <h2>Suivre d'autres utilisateurs</h2>
 
-<h2>Rechercher un utlisateur</h2>
+        <form class="follow-form" method="get" action="{% url 'dashboard-follow' %}">
+            <input type="text" name="recherche" placeholder="Nom d'utilisateur" value="{{ query|default:'' }}">
+            <button type="submit">Rechercher</button>
+        </form>
 
-<form method="get" action="{% url 'dashboard-follow' %}">
-    <input type="text" name="recherche" placeholder="Rechercher un utilisateur..." value="{{ query|default:'' }}">
-    <button type="submit">Rechercher</button>
-</form>
+        {% if query and users %}
+        <table class="follow-table search-table">
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td class="action-cell">
+                        <form class="inline-form" method="post" action="{% url 'follow-user' user.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Suivre</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
 
-{% for user in users %}
-<div>
-    {{user.username}}
-    <form method="post" action="{% url 'follow-user' user.id %}">
-        {% csrf_token %}
-        <button type="submit">Suivre</button>
-    </form>
-</div>
-{% endfor %}
+        <h3>Abonnements</h3>
+        <table class="follow-table">
+            <tbody>
+                {% for follow in following %}
+                <tr>
+                    <td>{{ follow.followed_user.username }}</td>
+                    <td class="action-cell">
+                        <form class="inline-form" method="post" action="{% url 'unfollow-user' follow.followed_user.id %}">
+                            {% csrf_token %}
+                            <button class="unsubscribe-btn" type="submit">Desabonner</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" class="empty-row">Aucun abonnement pour le moment.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-<h3>Abonnements : </h3>
-{% for follow in following %}
-<div>
-    <p>{{follow.followed_user.username}}</p>
-    <form method="post" action="{% url 'unfollow-user' follow.followed_user.id %}">
-        {% csrf_token %}
-        <button type="submit">Se désabonner</button>
-</form>
-</div>
-
-{% endfor %}
-
-<h3>Abonnés : </h3>
-{% for follow in followers %}
-<div>
-    {{follow.user.username}}
-</div>
-{% endfor %}
-
-
+        <h3>Abonnés</h3>
+        <table class="follow-table">
+            <tbody>
+                {% for follow in followers %}
+                <tr>
+                    <td>{{ follow.user.username }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td class="empty-row">Aucun abonne pour le moment.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
 {% endblock content %}

@@ -1,11 +1,17 @@
 {% load static %}
 
-<html>
+<!Doctype html>
+<html lang="fr">
 
 <head>
+
     <title>LITRevu</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'authentication.css' %}">
-    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+
+    {% block extras_css %}{% endblock %}
+
 </head>
 
 <body>
