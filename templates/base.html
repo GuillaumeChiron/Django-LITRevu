@@ -4,6 +4,7 @@
 
 <head>
     <title>LITRevu</title>
+    <link rel="stylesheet" href="{% static 'authentication.css' %}">
     <link rel="stylesheet" href="{% static 'app.css' %}">
 </head>
 
@@ -19,7 +20,7 @@
             <p>
             <form method="post" action="{% url 'logout-page' %}">
                 {% csrf_token %}
-                <button class="cancel-btn" type="submit">Se déconnecter</button>
+                <button class="logout-btn" type="submit">Se déconnecter</button>
             </form>
             </p>
         </div>
