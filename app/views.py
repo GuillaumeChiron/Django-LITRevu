@@ -119,6 +119,7 @@ def dashboard_follow(request):
     query = request.GET.get("recherche")
 
     users = []
+    users_follows = {}
 
     if query:
         users = User.objects.filter(username__icontains=query).exclude(
