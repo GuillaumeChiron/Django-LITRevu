@@ -20,7 +20,7 @@
             <tbody>
                 {% for user in users %}
                 <tr>
-                    <td>{{ user.username }}</td>
+                    <td class="center-user">{{ user.username }}</td>
                     <td class="action-cell">
                         <form class="inline-form" method="post" action="{% url 'follow-user' user.id %}">
                             {% csrf_token %}
@@ -32,6 +32,18 @@
             </tbody>
         </table>
         {% endif %}
+
+        {% if query and not users %}
+        <table class="follow-table search-table">
+            <tbody>
+                <tr>
+                    <td class="center-user">Personne introuvable</td>
+                </tr>
+            </tbody>
+        </table>
+        {% endif %}
+
+
 
         <h3>Abonnements</h3>
         <table class="follow-table">
