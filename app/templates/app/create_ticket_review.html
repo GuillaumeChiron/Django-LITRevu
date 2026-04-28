@@ -1,16 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extras_css %}
+<link rel="stylesheet" href="{% static 'pages/ticket_review.css' %}">
+{% endblock extras_css %}
 
 {% block content %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ ticket_form.as_p }}
-    <hr>
-    {{ review_form.as_p }}
-    <input type="submit" name="ticket" value="publier">
-</form>
+<main class="publication-page">
+    <section class="publication-card publication-card-wide">
+        <h2>Créer une critique</h2>
 
+        <form class="publication-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-<p><a href="{% url 'home-page' %}">Retour</a></p>
+            <fieldset>
+                <legend>Livre ou article</legend>
+                {{ ticket_form.as_p }}
+            </fieldset>
+
+            <fieldset>
+                <legend>Votre critique</legend>
+                {{ review_form.as_p }}
+            </fieldset>
+
+            <button type="submit" name="ticket">Publier</button>
+        </form>
+
+        <p class="form-actions">
+            <a class="cancel-btn" href="{% url 'home-page' %}">Retour</a>
+        </p>
+    </section>
+</main>
 
 {% endblock content %}
