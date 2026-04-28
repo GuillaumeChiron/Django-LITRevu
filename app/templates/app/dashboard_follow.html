@@ -40,7 +40,8 @@
                 <tr>
                     <td>{{ follow.followed_user.username }}</td>
                     <td class="action-cell">
-                        <form class="inline-form" method="post" action="{% url 'unfollow-user' follow.followed_user.id %}">
+                        <form class="inline-form" method="post"
+                            action="{% url 'unfollow-user' follow.followed_user.id %}">
                             {% csrf_token %}
                             <button class="unsubscribe-btn" type="submit">Desabonner</button>
                         </form>
@@ -63,7 +64,7 @@
                 </tr>
                 {% empty %}
                 <tr>
-                    <td class="empty-row">Aucun abonne pour le moment.</td>
+                    <td class="empty-row">Aucun abonné pour le moment.</td>
                 </tr>
                 {% endfor %}
             </tbody>
