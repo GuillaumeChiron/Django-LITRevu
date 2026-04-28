@@ -16,6 +16,18 @@
         </form>
 
         {% if query and users %}
+        {% for user, is_followed in users_follows.items %}
+        {% if is_followed %}
+        <table class="follow-table search-table">
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td class="center-user">{{ user.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
         <table class="follow-table search-table">
             <tbody>
                 {% for user in users %}
@@ -31,6 +43,8 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
+        {% endfor%}
         {% endif %}
 
         {% if query and not users %}

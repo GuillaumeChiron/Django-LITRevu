@@ -133,6 +133,11 @@ def dashboard_follow(request):
         users = User.objects.filter(username__icontains=query).exclude(
             id=request.user.id
         )
+        followed_users_ids = UserFollow.objects.filter(user=request.user).values_list(
+            "followed_user_id", flat=True
+        )
+        for user in users:
+            users_follows = {user.username: user.id in followed_users_ids}
 
     return render(
         request,
