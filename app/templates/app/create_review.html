@@ -8,6 +8,16 @@
 {% block content %}
 
 <main class="publication-page">
+
+    <section class="ticket-preview">
+                <p class="ticket-meta">Ticket - {{ticket.user }}</p>
+                <h4>{{ ticket.title }}</h4>
+                <p>{{ ticket.description }}</p>
+                {% if ticket.image %}
+                <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+                {% endif %}
+    </section>
+    
     <section class="publication-card">
         <h2>Créer une critique</h2>
 

@@ -42,7 +42,7 @@ def create_review(request, id):
             review.ticket = ticket
             review.save()
             return redirect("home-page")
-    return render(request, "app/create_review.html", {"form": form})
+    return render(request, "app/create_review.html", {"form": form, "ticket": ticket})
 
 
 @login_required
