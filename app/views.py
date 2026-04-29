@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
 
 from app.models import Ticket, Review, UserFollow
 from app.forms import TicketForm, ReviewForm
