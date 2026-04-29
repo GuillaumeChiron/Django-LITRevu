@@ -14,13 +14,20 @@ a:hover {
 
 nav .header {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+
+}
+
+nav .header .header_items {
+    display: flex;
     gap: 15px;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
 }
 
-nav .header .bold {
+nav .header .header_items .bold {
     font-weight: bold;
 }
 

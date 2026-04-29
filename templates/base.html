@@ -16,9 +16,10 @@
 
 <body>
     <nav>
-
-        {% if user.is_authenticated %}
         <div class="header">
+            <a href="{% url 'home-page' %}"><h2>LITReview</h2></a>
+        {% if user.is_authenticated %}
+        <div class="header_items">
             <p><a href="{% url 'home-page' %}">Flux</a></p>
             <p><a href="">Posts</a></p>
             <p><a href="{% url 'dashboard-follow' %}">Abonnements</a></p>
@@ -30,9 +31,8 @@
             </form>
             </p>
         </div>
+        </div>
         {% endif %}
-
-
     </nav>
 
     {% block content %}{% endblock content %}
