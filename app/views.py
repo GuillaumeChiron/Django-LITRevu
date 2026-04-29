@@ -4,8 +4,7 @@ from django.contrib.auth import get_user_model
 
 from app.models import Ticket, Review, UserFollow
 from app.forms import TicketForm, ReviewForm
-
-User = get_user_model()
+from authentication.models import User
 
 
 @login_required
