@@ -1,0 +1,132 @@
+.feed-page {
+    max-width: 760px;
+    margin: 24px auto 40px;
+    padding: 0 14px;
+}
+
+.feed-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 36px;
+    margin-bottom: 18px;
+}
+
+.feed-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    background: white;
+    color: #121212;
+    font-size: 17px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.feed-btn.small {
+    width: fit-content;
+    margin-left: auto;
+    font-size: 16px;
+}
+
+.feed-list {
+    display: grid;
+    gap: 12px;
+}
+
+.feed-card {
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+    padding: 14px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.feed-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.feed-card-header p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.feed-card-header p:last-child {
+    font-size: 12px;
+}
+
+.feed-card h3,
+.feed-card h4,
+.feed-card p {
+    margin: 10px 0;
+}
+
+.feed-card h3 {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.feed-review-body,
+.feed-card p,
+.ticket-meta,
+.ticket-preview h4 {
+    font-size: 16px;
+}
+
+.ticket-preview {
+    margin-top: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-preview img,
+.ticket-image {
+    margin-top: 6px;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.inline-link {
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .feed-actions {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .feed-btn {
+        font-size: 16px;
+    }
+
+    .feed-card-header p,
+    .feed-card h3,
+    .feed-review-body,
+    .feed-card p,
+    .ticket-meta,
+    .ticket-preview h4,
+    .inline-link,
+    .feed-btn.small {
+        font-size: 16px;
+    }
+}
