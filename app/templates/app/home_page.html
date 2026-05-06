@@ -8,6 +8,9 @@
 {% block content %}
 
 <main class="feed-page">
+
+    <a href="{% url 'create-ticket' %}">Créer un ticket</a>
+
     <setion class="feed-list">
         {% for post in posts %}
         {% if post.title %}
