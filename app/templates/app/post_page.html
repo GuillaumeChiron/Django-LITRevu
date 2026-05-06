@@ -17,7 +17,11 @@
         {% for review in reviews %}
         <article class="feed-card">
             <header class="feed-card-header">
+                {% if review.user == user %}
                 <p>Vous avez publié une critique</p>
+                {% else %}
+                <p>{{review.user}} a publié une critique</p>
+                {% endif %}
                 <p>{{ review.time_created|date:"H:i, d M Y" }}</p>
             </header>
 
@@ -38,7 +42,11 @@
         {% for ticket in tickets %}
         <article class="feed-card">
             <header class="feed-card-header">
+                {% if ticket.user == user %}
+                <p>Vous avez demandé une critique</p>
+                {% else %}
                 <p>{{ ticket.user }} a demandé une critique</p>
+                {% endif %}
                 <p>{{ ticket.time_created|date:"H:i, d M Y" }}</p>
             </header>
 
