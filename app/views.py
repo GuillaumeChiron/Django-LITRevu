@@ -12,11 +12,25 @@ from itertools import chain
 
 @login_required
 def home_page(request):
-    tickets = Ticket.objects.all().order_by("-time_created")
-    reviews = Review.objects.all().order_by("-time_created")
-    return render(
-        request, "app/home_page.html", {"tickets": tickets, "reviews": reviews}
+    tickets_by_user = Ticket.objects.filter(user=request.user)
+    reviews_by_ticket_user = Review.objects.filter(ticket__user=request.user)
+    reviews_by_user = Review.objects.filter(user=request.user)
+    ticket_following_user = Ticket.objects.filter(user__followed_by__user=request.user)
+    review_following_user = Review.objects.filter(user__followed_by__user=request.user)
+
+    posts = sorted(
+        chain(
+            tickets_by_user,
+            reviews_by_ticket_user,
+            reviews_by_user,
+            ticket_following_user,
+            review_following_user,
+        ),
+        key=lambda x: x.time_created,
+        reverse=True,
     )
+    context = {"posts": posts}
+    return render(request, "app/home_page.html", context=context)
 
 
 @login_required
@@ -24,8 +38,13 @@ def post_page(request):
 
     tickets = Ticket.objects.filter(user=request.user)
     reviews = Review.objects.filter(ticket__user=request.user)
+    reviews_by_user = Review.objects.filter(user=request.user)
 
-    posts = sorted(chain(tickets, reviews), key=lambda x: x.time_created, reverse=True)
+    posts = sorted(
+        chain(tickets, reviews, reviews_by_user),
+        key=lambda x: x.time_created,
+        reverse=True,
+    )
     context = {"posts": posts}
 
     return render(request, "app/post_page.html", context=context)
