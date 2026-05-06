@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.db.models import CharField, Value
 
 from app.models import Ticket, Review, UserFollow
 from app.forms import TicketForm, ReviewForm
@@ -20,11 +21,14 @@ def home_page(request):
 
 @login_required
 def post_page(request):
-    tickets = Ticket.objects.all().order_by("-time_created")
-    reviews = Review.objects.all().order_by("-time_created")
-    return render(
-        request, "app/post_page.html", {"tickets": tickets, "reviews": reviews}
-    )
+
+    tickets = Ticket.objects.filter(user=request.user)
+    reviews = Review.objects.filter(ticket__user=request.user)
+
+    posts = sorted(chain(tickets, reviews), key=lambda x: x.time_created, reverse=True)
+    context = {"posts": posts}
+
+    return render(request, "app/post_page.html", context=context)
 
 
 @login_required
