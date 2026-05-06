@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from app.models import Ticket, Review, UserFollow
 from app.forms import TicketForm, ReviewForm
 from authentication.models import User
+
+from itertools import chain
 
 
 @login_required
