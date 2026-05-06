@@ -16,6 +16,15 @@ def home_page(request):
 
 
 @login_required
+def post_page(request):
+    tickets = Ticket.objects.all().order_by("-time_created")
+    reviews = Review.objects.all().order_by("-time_created")
+    return render(
+        request, "app/post_page.html", {"tickets": tickets, "reviews": reviews}
+    )
+
+
+@login_required
 def create_ticket(request):
     form = TicketForm()
     if request.method == "POST":

@@ -17,20 +17,22 @@
 <body>
     <nav>
         <div class="header">
-            <a href="{% url 'home-page' %}"><h2>LITReview</h2></a>
-        {% if user.is_authenticated %}
-        <div class="header_items">
-            <p><a href="{% url 'home-page' %}">Flux</a></p>
-            <p><a href="">Posts</a></p>
-            <p><a href="{% url 'dashboard-follow' %}">Abonnements</a></p>
-            <p class="bold">{{request.user|upper}}</p>
-            <p>
-            <form method="post" action="{% url 'logout-page' %}">
-                {% csrf_token %}
-                <button class="logout-btn" type="submit">Se déconnecter</button>
-            </form>
-            </p>
-        </div>
+            <a href="{% url 'home-page' %}">
+                <h2>LITReview</h2>
+            </a>
+            {% if user.is_authenticated %}
+            <div class="header_items">
+                <p><a href="{% url 'home-page' %}">Flux</a></p>
+                <p><a href="{% url 'post-page' %}">Posts</a></p>
+                <p><a href="{% url 'dashboard-follow' %}">Abonnements</a></p>
+                <p class="bold">{{request.user|upper}}</p>
+                <p>
+                <form method="post" action="{% url 'logout-page' %}">
+                    {% csrf_token %}
+                    <button class="logout-btn" type="submit">Se déconnecter</button>
+                </form>
+                </p>
+            </div>
         </div>
         {% endif %}
     </nav>

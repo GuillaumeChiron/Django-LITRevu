@@ -38,7 +38,9 @@ urlpatterns = [
     ),
     path("logout/", LogoutView.as_view(), name="logout-page"),
     path("signup/", authentication.views.signup_page, name="signup-page"),
+    # chemins : home, post
     path("home/", app.views.home_page, name="home-page"),
+    path("post/", app.views.post_page, name="post-page"),
     # chemins: Ticket, Review
     # Ticket
     path("create-ticket/", app.views.create_ticket, name="create-ticket"),
