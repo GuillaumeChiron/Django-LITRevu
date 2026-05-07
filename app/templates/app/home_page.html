@@ -38,9 +38,6 @@
             {% endif %}
 
             <div class="card-actions">
-                {% if post.user == user %}
-                <a class="feed-btn small" href="{% url 'edit-ticket' post.id %}">Modifier</a>
-                {% endif %}
                 <a class="feed-btn small" href="{% url 'create-review' post.id %}">Créer une critique</a>
             </div>
         </article>
