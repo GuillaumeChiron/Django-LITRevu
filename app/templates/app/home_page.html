@@ -9,7 +9,10 @@
 
 <main class="feed-page">
 
-    <a href="{% url 'create-ticket' %}">Créer un ticket</a>
+    <section class="feed-actions">
+        <a class="feed-btn" href="{% url 'create-ticket' %}">Demander une critique</a>
+        <a class="feed-btn" href="{% url 'create-ticket-review' %}">Créer une critique</a>
+    </section>
 
     <setion class="feed-list">
         {% for post in posts %}

@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
+    margin: 0;
+    padding-top: 88px;
 }
 
 a {
@@ -12,11 +14,22 @@ a:hover {
     text-decoration: None;
 }
 
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #f4f4f4;
+    z-index: 1000;
+    box-sizing: border-box;
+    padding: 0 16px;
+}
+
 nav .header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;  
-
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav .header .header_items {
