@@ -3,6 +3,7 @@
 
 {% block extras_css %}
 <link rel="stylesheet" href="{% static 'pages/feed_page.css' %}">
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 {% endblock extras_css %}
 
 {% block content %}
@@ -32,7 +33,9 @@
             {% endif %}
 
             <div class="card-actions">
-                <a class="inline-link" href="{% url 'edit-ticket' post.id %}">Modifier</a>
+                {% if post.user == user %}
+                <a class="feed-btn small" href="{% url 'edit-ticket' post.id %}">Modifier</a>
+                {% endif %}
                 <a class="feed-btn small" href="{% url 'create-review' post.id %}">Créer une critique</a>
             </div>
         </article>
@@ -47,7 +50,7 @@
                 <p>{{ post.time_created|date:"H:i, d M Y" }}</p>
             </header>
 
-            <h3 class="feed-review-title">{{ post.headline }} - {{ post.rating }}/5</h3>
+            <h3 class="feed-review-title">{{ post.headline }} - <span class="review-stars">{%  for star in post.stars %}<i class="fa-solid fa-star"></i>{% endfor %}</span></h3>
             <p class="feed-review-body">{{ post.body }}</p>
 
             <section class="ticket-preview">

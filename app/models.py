@@ -25,6 +25,9 @@ class Review(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    def stars(self):
+        return range(self.rating)
+
 
 class UserFollow(models.Model):
     user = models.ForeignKey(

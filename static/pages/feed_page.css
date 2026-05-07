@@ -27,7 +27,6 @@
 
 .feed-btn.small {
     width: fit-content;
-    margin-left: auto;
     font-size: 16px;
 }
 
@@ -99,14 +98,14 @@
 
 .card-actions {
     display: flex;
-    gap: 12px;
     align-items: center;
     margin-top: 10px;
+    justify-content: flex-end;
+    gap: 12px;
 }
 
-.inline-link {
-    font-size: 16px;
-    text-decoration: underline;
+.review-stars {
+    font-size: 20px;
 }
 
 @media (max-width: 900px) {
@@ -125,7 +124,6 @@
     .feed-card p,
     .ticket-meta,
     .ticket-preview h4,
-    .inline-link,
     .feed-btn.small {
         font-size: 16px;
     }
