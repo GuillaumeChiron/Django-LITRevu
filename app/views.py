@@ -17,16 +17,22 @@ def home_page(request):
     reviews_by_user = Review.objects.filter(user=request.user)
     ticket_following_user = Ticket.objects.filter(user__followed_by__user=request.user)
     review_following_user = Review.objects.filter(user__followed_by__user=request.user)
-    reviewed_ticket_ids = set(Review.objects.all().values_list("ticket_id", flat=True))
+    reviewed_ticket_ids = (
+        Review.objects.all().values_list("ticket_id", flat=True).distinct()
+    )
 
-    posts = sorted(
+    posts_not_sorted = set(
         chain(
             tickets_by_user,
             reviews_by_ticket_user,
             reviews_by_user,
             ticket_following_user,
             review_following_user,
-        ),
+        )
+    )
+
+    posts = sorted(
+        posts_not_sorted,
         key=lambda x: x.time_created,
         reverse=True,
     )
@@ -40,10 +46,14 @@ def post_page(request):
     tickets = Ticket.objects.filter(user=request.user)
     reviews = Review.objects.filter(ticket__user=request.user)
     reviews_by_user = Review.objects.filter(user=request.user)
-    reviewed_ticket_ids = set(Review.objects.all().values_list("ticket_id", flat=True))
+    reviewed_ticket_ids = (
+        Review.objects.all().values_list("ticket_id", flat=True).distinct()
+    )
+
+    posts_not_sorted = set(chain(tickets, reviews, reviews_by_user))
 
     posts = sorted(
-        chain(tickets, reviews, reviews_by_user),
+        posts_not_sorted,
         key=lambda x: x.time_created,
         reverse=True,
     )
