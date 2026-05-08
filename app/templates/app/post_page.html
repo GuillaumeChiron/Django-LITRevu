@@ -11,64 +11,72 @@
 <main class="feed-page">
 
     <setion class="feed-list">
-        {% for post in posts %}
-        {% if post.title %}
-        <article class="feed-card">
-            <header class="feed-card-header">
-                {% if post.user == user %}
-                <p>Vous avez demandé une critique</p>
-                {% else %}
-                <p>{{ post.user }} a demandé une critique</p>
-                {% endif %}
-                <p>{{ post.time_created|date:"H:i, d M Y" }}</p>
-            </header>
+        {% if posts %}
+            {% for post in posts %}
+            {% if post.title %}
+            <article class="feed-card">
+                <header class="feed-card-header">
+                    {% if post.user == user %}
+                    <p>Vous avez demandé une critique</p>
+                    {% else %}
+                    <p>{{ post.user }} a demandé une critique</p>
+                    {% endif %}
+                    <p>{{ post.time_created|date:"H:i, d M Y" }}</p>
+                </header>
 
-            <h3>{{ post.title }}</h3>
-            {% if post.description %}
-            <p>{{ post.description }}</p>
+                <h3>{{ post.title }}</h3>
+                {% if post.description %}
+                <p>{{ post.description }}</p>
+                {% endif %}
+
+                {% if post.image %}
+                <img class="ticket-image" src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
+
+                <div class="card-actions">
+                    {% if post.user == user %}
+                    <a class="feed-btn small" href="{% url 'edit-ticket' post.id %}">Modifier</a>
+                    {% endif %}
+                    {% if post.id not in reviewed_ticket_ids %}
+                    <a class="feed-btn small" href="{% url 'create-review' post.id %}">Créer une critique</a>
+                    {% endif %}
+                </div>
+            </article>
+            {% elif post.headline %}
+            <article class="feed-card">
+                <header class="feed-card-header">
+                    {% if post.user == user %}
+                    <p>Vous avez publié une critique</p>
+                    {% else %}
+                    <p>{{post.user}} a publié une critique</p>
+                    {% endif %}
+                    <p>{{ post.time_created|date:"H:i, d M Y" }}</p>
+                </header>
+
+                <h3 class="feed-review-title">{{ post.headline }} - <span class="review-stars">{%  for star in post.stars %}<i class="fa-solid fa-star"></i>{% endfor %}</span></h3>
+                <p class="feed-review-body">{{ post.body }}</p>
+
+                <section class="ticket-preview">
+                    <p class="ticket-meta">Ticket - {{ post.ticket.user }}</p>
+                    <h4>{{ post.ticket.title }}</h4>
+                    <p>{{ post.ticket.description}}</p>
+                    {% if post.ticket.image %}
+                    <img src="{{ post.ticket.image.url }}" alt="{{ post.ticket.title }}">
+                    {% endif %}
+                </section>
+                <div class="card-actions">
+                    {% if post.user == user %}
+                    <a class="feed-btn small" href="{% url 'edit-review' post.id %}">Modifier</a>
+                    {% endif %}
+                </div>
+            </article>
             {% endif %}
-
-            {% if post.image %}
-            <img class="ticket-image" src="{{ post.image.url }}" alt="{{ post.title }}">
-            {% endif %}
-
-            <div class="card-actions">
-                {% if post.user == user %}
-                <a class="feed-btn small" href="{% url 'edit-ticket' post.id %}">Modifier</a>
-                {% endif %}
-                <a class="feed-btn small" href="{% url 'create-review' post.id %}">Créer une critique</a>
-            </div>
-        </article>
-        {% elif post.headline %}
-        <article class="feed-card">
-            <header class="feed-card-header">
-                {% if post.user == user %}
-                <p>Vous avez publié une critique</p>
-                {% else %}
-                <p>{{post.user}} a publié une critique</p>
-                {% endif %}
-                <p>{{ post.time_created|date:"H:i, d M Y" }}</p>
-            </header>
-
-            <h3 class="feed-review-title">{{ post.headline }} - <span class="review-stars">{%  for star in post.stars %}<i class="fa-solid fa-star"></i>{% endfor %}</span></h3>
-            <p class="feed-review-body">{{ post.body }}</p>
-
-            <section class="ticket-preview">
-                <p class="ticket-meta">Ticket - {{ post.ticket.user }}</p>
-                <h4>{{ post.ticket.title }}</h4>
-                <p>{{ post.ticket.description}}</p>
-                {% if post.ticket.image %}
-                <img src="{{ post.ticket.image.url }}" alt="{{ post.ticket.title }}">
-                {% endif %}
+            {% endfor %}
+        {% else %}
+            <section class="empty-feed">
+                <p>Aucun post de disponible</p>
             </section>
-            <div class="card-actions">
-                {% if post.user == user %}
-                <a class="feed-btn small" href="{% url 'edit-review' post.id %}">Modifier</a>
-                {% endif %}
-            </div>
-        </article>
         {% endif %}
-        {% endfor %}
     </setion>
 </main>
 

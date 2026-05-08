@@ -17,6 +17,7 @@ def home_page(request):
     reviews_by_user = Review.objects.filter(user=request.user)
     ticket_following_user = Ticket.objects.filter(user__followed_by__user=request.user)
     review_following_user = Review.objects.filter(user__followed_by__user=request.user)
+    reviewed_ticket_ids = set(Review.objects.all().values_list("ticket_id", flat=True))
 
     posts = sorted(
         chain(
@@ -29,7 +30,7 @@ def home_page(request):
         key=lambda x: x.time_created,
         reverse=True,
     )
-    context = {"posts": posts}
+    context = {"posts": posts, "reviewed_ticket_ids": reviewed_ticket_ids}
     return render(request, "app/home_page.html", context=context)
 
 
@@ -39,13 +40,14 @@ def post_page(request):
     tickets = Ticket.objects.filter(user=request.user)
     reviews = Review.objects.filter(ticket__user=request.user)
     reviews_by_user = Review.objects.filter(user=request.user)
+    reviewed_ticket_ids = set(Review.objects.all().values_list("ticket_id", flat=True))
 
     posts = sorted(
         chain(tickets, reviews, reviews_by_user),
         key=lambda x: x.time_created,
         reverse=True,
     )
-    context = {"posts": posts}
+    context = {"posts": posts, "reviewed_ticket_ids": reviewed_ticket_ids}
 
     return render(request, "app/post_page.html", context=context)
 
