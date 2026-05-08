@@ -12,27 +12,21 @@ from itertools import chain
 
 @login_required
 def home_page(request):
-    tickets_by_user = Ticket.objects.filter(user=request.user)
-    reviews_by_ticket_user = Review.objects.filter(ticket__user=request.user)
-    reviews_by_user = Review.objects.filter(user=request.user)
-    ticket_following_user = Ticket.objects.filter(user__followed_by__user=request.user)
-    review_following_user = Review.objects.filter(user__followed_by__user=request.user)
+    tickets = Ticket.objects.filter(
+        Q(user=request.user) | Q(user__followed_by__user=request.user)
+    ).distinct()
+    reviews = Review.objects.filter(
+        Q(ticket__user=request.user)
+        | Q(user=request.user)
+        | Q(user__followed_by__user=request.user)
+    ).distinct()
+
     reviewed_ticket_ids = (
         Review.objects.all().values_list("ticket_id", flat=True).distinct()
     )
 
-    posts_not_sorted = set(
-        chain(
-            tickets_by_user,
-            reviews_by_ticket_user,
-            reviews_by_user,
-            ticket_following_user,
-            review_following_user,
-        )
-    )
-
     posts = sorted(
-        posts_not_sorted,
+        chain(tickets, reviews),
         key=lambda x: x.time_created,
         reverse=True,
     )
