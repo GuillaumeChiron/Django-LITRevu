@@ -61,6 +61,11 @@
                 <img src="{{ post.ticket.image.url }}" alt="{{ post.ticket.title }}">
                 {% endif %}
             </section>
+            <div class="card-actions">
+                {% if post.user == user %}
+                <a class="feed-btn small" href="{% url 'edit-review' post.id %}">Modifier</a>
+                {% endif %}
+            </div>
         </article>
         {% endif %}
         {% endfor %}
