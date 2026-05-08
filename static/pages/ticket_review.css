@@ -88,11 +88,9 @@
     text-align: center;
 }
 
-.publication-form button {
-    background: #81A181;
-    color: white;
-    border: none;
-    cursor: pointer;
+.publication-form but
+.publication-form .danger-btn {
+    background: #B54E4E;
 }
 
 .form-actions {
@@ -110,8 +108,16 @@
     background: #B54E4E;
 }
 
+
+
 .delete-btn {
     background: #B54E4E;
+}
+
+.delete-confirmation-text {
+    margin: 0 0 18px;
+    text-align: center;
+    line-height: 1.5;
 }
 
 .publication-form fieldset {

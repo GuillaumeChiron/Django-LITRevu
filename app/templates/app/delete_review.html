@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extras_css %}
+<link rel="stylesheet" href="{% static 'pages/ticket_review.css' %}">
+{% endblock extras_css %}
 
 {% block content %}
 
-<h1>Supprimer la review</h1>
+<main class="publication-page">
+    <section class="publication-card">
+        <h2>Supprimer la critique</h2>
 
-<p>Etes-vous sûr de vouloir supprimer la review : {{ review.headline }} ?</p>
+        <p class="delete-confirmation-text">Etes-vous sur de vouloir supprimer la critique : <strong>{{ review.headline }}</strong> ?</p>
 
-<form action="" method="post">
-{% csrf_token %}
-<input type="submit" value="Supprimer">
-</form>
+        <form class="publication-form" action="" method="post">
+            {% csrf_token %}
+            <button class="danger-btn" type="submit">Supprimer</button>
+        </form>
 
-<p><a href="{% url 'edit-review' review.id %}">Retour</a></p>
+        <div class="form-actions">
+            <a class="cancel-btn" href="{% url 'edit-review' review.id %}">Retour</a>
+        </div>
+    </section>
+</main>
 
 {% endblock content %}
