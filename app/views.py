@@ -30,6 +30,7 @@ def home_page(request):
         key=lambda x: x.time_created,
         reverse=True,
     )
+
     context = {"posts": posts, "reviewed_ticket_ids": reviewed_ticket_ids}
     return render(request, "app/home_page.html", context=context)
 
@@ -37,17 +38,16 @@ def home_page(request):
 @login_required
 def post_page(request):
 
-    tickets = Ticket.objects.filter(user=request.user)
-    reviews = Review.objects.filter(ticket__user=request.user)
-    reviews_by_user = Review.objects.filter(user=request.user)
+    tickets = Ticket.objects.filter(user=request.user).distinct()
+    reviews = Review.objects.filter(
+        Q(ticket__user=request.user) | Q(user=request.user)
+    ).distinct()
     reviewed_ticket_ids = (
         Review.objects.all().values_list("ticket_id", flat=True).distinct()
     )
 
-    posts_not_sorted = set(chain(tickets, reviews, reviews_by_user))
-
     posts = sorted(
-        posts_not_sorted,
+        chain(tickets, reviews),
         key=lambda x: x.time_created,
         reverse=True,
     )
