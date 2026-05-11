@@ -122,6 +122,67 @@
     font-size: 20px;
 }
 
+.pagination {
+    margin-top: 18px;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pagination-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 14px;
+    border: 1px solid #cfd8cf;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1f2a1f;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.pagination-link:hover {
+    background: #81A181;
+    border-color: #81A181;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.pagination-link.is-disabled {
+    color: #a8b0a8;
+    border-color: #e5e9e5;
+    background: #f8f8f8;
+    cursor: not-allowed;
+}
+
+.pagination-current {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid #d7ded7;
+    background: #f5f8f5;
+    color: #273127;
+    font-size: 14px;
+}
+
+.pagination-current-label {
+    color: #5f6e5f;
+}
+
 @media (max-width: 900px) {
     .feed-actions {
         grid-template-columns: 1fr;
@@ -144,5 +205,17 @@
 
     .empty-feed p {
         font-size: 20px;
+    }
+
+    .pagination {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .pagination-link,
+    .pagination-current {
+        min-height: 34px;
+        font-size: 13px;
+        padding: 0 12px;
     }
 }

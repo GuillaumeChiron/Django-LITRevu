@@ -10,9 +10,9 @@
 
 <main class="feed-page">
 
-    <setion class="feed-list">
-        {% if posts %}
-            {% for post in posts %}
+    <section class="feed-list">
+        {% if page_posts %}
+            {% for post in page_posts %}
             {% if post.title %}
                 {% include "app/partials/posts_ticket.html" %}
             {% elif post.headline %}
@@ -24,7 +24,12 @@
                 <p>Aucun post de disponible</p>
             </section>
         {% endif %}
-    </setion>
+
+        <div class="feed-pagination">
+            {% include "app/partials/pagination.html" %}
+        </div>
+
+    </section>
 </main>
 
 {% endblock content %}

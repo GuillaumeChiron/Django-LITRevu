@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.db.models import CharField, Value
+from django.core.paginator import Paginator
 
 from app.models import Ticket, Review, UserFollow
 from app.forms import TicketForm, ReviewForm
@@ -37,7 +37,11 @@ def home_page(request):
         reverse=True,
     )
 
-    context = {"posts": posts, "reviewed_ticket_ids": reviewed_ticket_ids}
+    paginator = Paginator(posts, 5)
+    page_number = request.GET.get("page")
+    page_posts = paginator.get_page(page_number)
+
+    context = {"page_posts": page_posts, "reviewed_ticket_ids": reviewed_ticket_ids}
     return render(request, "app/home_page.html", context=context)
 
 
@@ -60,7 +64,12 @@ def post_page(request):
         key=lambda x: x.time_created,
         reverse=True,
     )
-    context = {"posts": posts, "reviewed_ticket_ids": reviewed_ticket_ids}
+
+    paginator = Paginator(posts, 5)
+    page_number = request.GET.get("page")
+    page_posts = paginator.get_page(page_number)
+
+    context = {"page_posts": page_posts, "reviewed_ticket_ids": reviewed_ticket_ids}
 
     return render(request, "app/post_page.html", context=context)
 
