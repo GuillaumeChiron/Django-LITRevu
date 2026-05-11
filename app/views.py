@@ -37,6 +37,7 @@ def home_page(request):
         reverse=True,
     )
 
+    # Pagination des posts
     paginator = Paginator(posts, 5)
     page_number = request.GET.get("page")
     page_posts = paginator.get_page(page_number)
@@ -65,6 +66,7 @@ def post_page(request):
         reverse=True,
     )
 
+    # Pagination des posts
     paginator = Paginator(posts, 5)
     page_number = request.GET.get("page")
     page_posts = paginator.get_page(page_number)
