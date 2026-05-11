@@ -28,6 +28,7 @@ class Review(models.Model):
     def __str__(self):
         return f"{self.headline}"
 
+    # Retourne une "range" de la taille du rating
     def stars(self):
         return range(self.rating)
 
