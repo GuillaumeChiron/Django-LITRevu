@@ -6,7 +6,7 @@ Application Django de partage de tickets et critiques de livres.
 
 - Python 3.12+
 - `pip`
-- (Recommande) `venv` pour isoler les dependances
+- `venv` pour isoler les dependances
 
 ## Installation
 
