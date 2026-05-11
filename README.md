@@ -50,9 +50,3 @@ L'application sera accessible sur : `http://127.0.0.1:8000/`
 ```powershell
 python manage.py createsuperuser
 ```
-
-- Lancer les tests :
-
-```powershell
-python manage.py test
-```
