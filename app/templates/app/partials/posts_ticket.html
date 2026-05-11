@@ -1,0 +1,25 @@
+<article class="feed-card">
+    <header class="feed-card-header">
+        {% if post.user == user %}
+        <p>Vous avez demandé une critique</p>
+        {% else %}
+        <p>{{ post.user }} a demandé une critique</p>
+        {% endif %}
+        <p>{{ post.time_created|date:"H:i, d M Y" }}</p>
+    </header>
+
+    <h3>{{ post.title }}</h3>
+    {% if post.description %}
+    <p>{{ post.description }}</p>
+    {% endif %}
+
+    {% if post.image %}
+    <img class="ticket-image" src="{{ post.image.url }}" alt="{{ post.title }}">
+    {% endif %}
+
+    <div class="card-actions">
+        {% if post.id not in reviewed_ticket_ids %}
+        <a class="feed-btn small" href="{% url 'create-review' post.id %}">Créer une critique</a>
+        {% endif %}
+    </div>
+</article>
