@@ -20,7 +20,10 @@ python -m venv env
 3. Activer l'environnement virtuel :
 
 ```powershell
-(.\env\Scripts\Activate.ps1) ou (source env/bin/activate)
+.\env\Scripts\Activate.ps1
+```
+```powershell
+source env/bin/activate
 ```
 
 4. Installer les dependances :
