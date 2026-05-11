@@ -13,6 +13,7 @@ class SignupForm(forms.ModelForm):
         model = User
         fields = ["username"]
 
+    # Validation des données
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")

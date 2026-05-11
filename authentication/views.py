@@ -5,12 +5,14 @@ from authentication import forms
 from authentication.forms import SignupForm
 
 
+# Mise en place du formulaire d'inscription
 def signup_page(request):
     form = SignupForm()
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
+            # Sécurise le mot de passe
             user.set_password(form.cleaned_data["password"])
             user.save()
             login(request, user)
