@@ -1,8 +1,29 @@
-<div class="card-actions">
-    {% if post.user == user %}
-    <a class="feed-btn small" href="{% url 'edit-ticket' post.id %}">Modifier</a>
+<article class="feed-card">
+    <header class="feed-card-header">
+        {% if post.user == user %}
+        <p>Vous avez demandé une critique</p>
+        {% else %}
+        <p>{{ post.user }} a demandé une critique</p>
+        {% endif %}
+        <p>{{ post.time_created|date:"H:i, d M Y" }}</p>
+    </header>
+
+    <h3>{{ post.title }}</h3>
+    {% if post.description %}
+    <p>{{ post.description }}</p>
     {% endif %}
-    {% if post.id not in reviewed_ticket_ids %}
-    <a class="feed-btn small" href="{% url 'create-review' post.id %}">Créer une critique</a>
+
+    {% if post.image %}
+    <img class="ticket-image" src="{{ post.image.url }}" alt="{{ post.title }}">
     {% endif %}
-</div>
+
+    <div class="card-actions">
+        {% if post.user == user %}
+        <a class="feed-btn small" href="{% url 'edit-ticket' post.id %}">Modifier</a>
+        {% endif %}
+        {% if post.id not in reviewed_ticket_ids %}
+        <a class="feed-btn small" href="{% url 'create-review' post.id %}">Créer une critique</a>
+        {% endif %}
+    </div>
+
+</article>
