@@ -25,6 +25,13 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
+.feed-btn:hover {
+    background: #81a181;
+    border-color: #81a181;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
 .feed-btn.small {
     width: fit-content;
     font-size: 16px;
@@ -123,7 +130,7 @@
 }
 
 .pagination {
-    margin-top: 18px;
+    margin-top: 20px;
     padding: 12px;
     border: 1px solid #dcdcdc;
     border-radius: 12px;
@@ -136,51 +143,56 @@
     flex-wrap: wrap;
 }
 
-.pagination-link {
+.pagination-link,
+.pagination-current {
+    min-height: 44px;
+    border-radius: 999px;
+    padding: 0 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 38px;
-    padding: 0 14px;
-    border: 1px solid #cfd8cf;
-    border-radius: 999px;
-    background: #ffffff;
-    color: #1f2a1f;
     font-size: 14px;
     font-weight: 600;
+}
+
+.pagination-link {
+    border: 1px solid #cfd8cf;
+    background: #ffffff;
+    color: black;
     text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .pagination-link:hover {
-    background: #81A181;
-    border-color: #81A181;
+    background: #81a181;
+    border-color: #81a181;
     color: #ffffff;
     transform: translateY(-1px);
 }
 
+
 .pagination-link.is-disabled {
-    color: #a8b0a8;
-    border-color: #e5e9e5;
-    background: #f8f8f8;
+    color: #98a198;
+    border-color: #e2e6e2;
+    background: #f7f8f7;
     cursor: not-allowed;
 }
 
 .pagination-current {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    min-height: 38px;
-    padding: 0 16px;
-    border-radius: 999px;
     border: 1px solid #d7ded7;
-    background: #f5f8f5;
-    color: #273127;
-    font-size: 14px;
+    background: linear-gradient(180deg, #f8fbf8 0%, #eef4ee 100%);
+    color: black;
 }
 
-.pagination-current-label {
-    color: #5f6e5f;
+
+@media (prefers-reduced-motion: reduce) {
+    .pagination-link {
+        transition: none;
+    }
+
+    .pagination-link:hover {
+        transform: none;
+    }
 }
 
 @media (max-width: 900px) {
@@ -214,7 +226,7 @@
 
     .pagination-link,
     .pagination-current {
-        min-height: 34px;
+        min-height: 44px;
         font-size: 13px;
         padding: 0 12px;
     }

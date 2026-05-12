@@ -1,24 +1,21 @@
-﻿<section class="pagination" aria-label="Pagination">
+﻿<section class="pagination" aria-label="Navigation des pages">
     {% if page_posts.has_previous %}
-    <a class="pagination-link pagination-link-nav" href="?page=1" aria-label="Première page">Première</a>
-    <a class="pagination-link pagination-link-nav" href="?page={{ page_posts.previous_page_number }}" aria-label="Page précédente">Précédente</a>
+    <a class="pagination-link" href="?page=1" aria-label="Aller a la premiere page"><< Premiere</a>
+    <a class="pagination-link" href="?page={{ page_posts.previous_page_number }}" rel="prev" aria-label="Aller a la page precedente">< Precedente</a>
     {% else %}
-    <span class="pagination-link pagination-link-nav is-disabled" aria-hidden="true">Première</span>
-    <span class="pagination-link pagination-link-nav is-disabled" aria-hidden="true">Précédente</span>
+    <span class="pagination-link is-disabled" aria-disabled="true"><< Premiere</span>
+    <span class="pagination-link is-disabled" aria-disabled="true">< Precedente</span>
     {% endif %}
 
-    <span class="pagination-current" aria-live="polite">
-        <span class="pagination-current-label">Page</span>
-        <strong>{{ page_posts.number }}</strong>
-        <span class="pagination-current-label">/</span>
-        <strong>{{ page_posts.paginator.num_pages }}</strong>
+    <span class="pagination-current" aria-current="page">
+        Page {{ page_posts.number }} / {{ page_posts.paginator.num_pages }}
     </span>
 
     {% if page_posts.has_next %}
-    <a class="pagination-link pagination-link-nav" href="?page={{ page_posts.next_page_number }}" aria-label="Page suivante">Suivante</a>
-    <a class="pagination-link pagination-link-nav" href="?page={{ page_posts.paginator.num_pages }}" aria-label="Dernière page">Dernière</a>
+    <a class="pagination-link" href="?page={{ page_posts.next_page_number }}" rel="next" aria-label="Aller a la page suivante">Suivante ></a>
+    <a class="pagination-link" href="?page={{ page_posts.paginator.num_pages }}" aria-label="Aller a la derniere page">Derniere >></a>
     {% else %}
-    <span class="pagination-link pagination-link-nav is-disabled" aria-hidden="true">Suivante</span>
-    <span class="pagination-link pagination-link-nav is-disabled" aria-hidden="true">Dernière</span>
+    <span class="pagination-link is-disabled" aria-disabled="true">Suivante ></span>
+    <span class="pagination-link is-disabled" aria-disabled="true">Derniere >></span>
     {% endif %}
 </section>

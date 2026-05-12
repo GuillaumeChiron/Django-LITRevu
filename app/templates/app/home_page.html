@@ -19,9 +19,9 @@
         {% if page_posts %}
             {% for post in page_posts %}
             {% if post.title %}
-                {% include "app/partials/posts_ticket.html" %}
+                {% include "app/partials/home_ticket.html" %}
             {% elif post.headline %}
-                {% include "app/partials/posts_review.html" %}
+                {% include "app/partials/home_review.html" %}
             {% endif %}
             {% endfor %}
 
