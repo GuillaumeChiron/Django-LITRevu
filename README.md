@@ -4,7 +4,7 @@ Application Django de partage de tickets et critiques de livres.
 
 ## Description du projet
 
-`booksApp` est une application web developpee avec Django qui permet aux utilisateurs de demander des avis sur des livres ou articles, puis de publier des critiques.
+`booksApp` est une application web developpée avec Django qui permet aux utilisateurs de demander des avis sur des livres ou articles, puis de publier des critiques.
 
 Le principe est simple :
 - un utilisateur peut creer un `ticket` pour demander une recommendation ou un retour sur une lecture ;
@@ -13,7 +13,7 @@ Le principe est simple :
 
 L'application propose egalement un systeme de suivi entre utilisateurs pour construire un fil de contenu pertinent.
 
-## Fonctionnalites
+## Fonctionnalités
 
 - Authentification : inscription, connexion, deconnexion.
 - Gestion des tickets :
@@ -40,7 +40,6 @@ L'application propose egalement un systeme de suivi entre utilisateurs pour cons
 ## Prerequis
 
 - Python 3.12+
-- `pip`
 - `venv` pour isoler les dependances
 
 ## Installation
@@ -55,10 +54,10 @@ python -m venv env
 3. Activer l'environnement virtuel :
 
 ```powershell
-.\env\Scripts\Activate.ps1
+.\env\Scripts\Activate.ps1 (windows)
 ```
 ```powershell
-source env/bin/activate
+source env/bin/activate (MacOS)
 ```
 
 4. Installer les dependances :
@@ -88,3 +87,4 @@ L'application sera accessible sur : `http://127.0.0.1:8000/`
 ```powershell
 python manage.py createsuperuser
 ```
+Administration accessible sur : `http://127.0.0.1:8000/admin`
