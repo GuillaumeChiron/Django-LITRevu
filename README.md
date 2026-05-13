@@ -2,6 +2,41 @@
 
 Application Django de partage de tickets et critiques de livres.
 
+## Description du projet
+
+`booksApp` est une application web developpee avec Django qui permet aux utilisateurs de demander des avis sur des livres ou articles, puis de publier des critiques.
+
+Le principe est simple :
+- un utilisateur peut creer un `ticket` pour demander une recommendation ou un retour sur une lecture ;
+- les autres utilisateurs peuvent repondre avec une `review` (note + commentaire) ;
+- chaque utilisateur dispose d'un flux personnalise base sur ses abonnements.
+
+L'application propose egalement un systeme de suivi entre utilisateurs pour construire un fil de contenu pertinent.
+
+## Fonctionnalites
+
+- Authentification : inscription, connexion, deconnexion.
+- Gestion des tickets :
+  - creation d'un ticket (titre, description, image optionnelle) ;
+  - modification d'un ticket ;
+  - suppression d'un ticket.
+- Gestion des critiques (reviews) :
+  - creation d'une critique sur un ticket ;
+  - creation combinee ticket + critique en une seule action ;
+  - modification d'une critique ;
+  - suppression d'une critique ;
+  - notation de 0 a 5.
+- Flux personnalise :
+  - affichage des tickets et critiques de l'utilisateur ;
+  - affichage des contenus des utilisateurs suivis ;
+  - tri antichronologique.
+- Page "Posts" :
+  - vue centree sur les publications de l'utilisateur.
+- Abonnements :
+  - recherche d'utilisateurs ;
+  - suivi et desabonnement ;
+  - affichage des abonnements et abonnes.
+
 ## Prerequis
 
 - Python 3.12+
