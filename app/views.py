@@ -139,7 +139,7 @@ def edit_ticket(request, id):
         ticket_form = TicketForm(request.POST, request.FILES, instance=ticket)
         if ticket_form.is_valid():
             ticket_form.save()
-            return redirect("home-page")
+            return redirect("post-page")
     return render(
         request, "app/edit_ticket.html", {"ticket_form": ticket_form, "ticket": ticket}
     )
@@ -164,7 +164,7 @@ def edit_review(request, id):
         review_form = ReviewForm(request.POST, instance=review)
         if review_form.is_valid():
             review_form.save()
-            return redirect("home-page")
+            return redirect("post-page")
     return render(
         request, "app/edit_review.html", {"review_form": review_form, "review": review}
     )
