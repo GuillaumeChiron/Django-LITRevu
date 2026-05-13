@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<div class="login-box">
+<main>
+    <div class="login-box">
     <h2>Inscription</h2>
 
     {% if form.errors %}
@@ -15,6 +16,7 @@
         <button type="submit">S'inscrire</button>
     </form>
     <p><a class="cancel-btn" href="{% url 'login-page' %}">Annuler</a></p>
-</div>
+    </div>
+</main>
 
 {% endblock content %}

@@ -26,8 +26,8 @@
 }
 
 .feed-btn:hover {
-    background: #81a181;
-    border-color: #81a181;
+    background: #4F7A4F;
+    border-color: #4F7A4F;
     color: #ffffff;
     transform: translateY(-1px);
 }
@@ -164,8 +164,8 @@
 }
 
 .pagination-link:hover {
-    background: #81a181;
-    border-color: #81a181;
+    background: #4F7A4F;
+    border-color: #4F7A4F;
     color: #ffffff;
     transform: translateY(-1px);
 }
