@@ -6,11 +6,11 @@ from app.models import Review, Ticket
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        exclude = ["user"]
+        fields = ["title", "description", "image"]
 
 
 # Formulaire des reviews
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        exclude = ["user", "ticket"]
+        fields = ["rating", "headline", "body"]
